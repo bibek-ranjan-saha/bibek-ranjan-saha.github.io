@@ -1,13 +1,21 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:bibek_ranjan_saha/assets/images.dart';
 import 'package:bibek_ranjan_saha/models/ip_data.dart';
 import 'package:flutter/material.dart';
-import 'package:bibek_ranjan_saha/assets/images.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../services/apis.dart';
+import '../widgets/seo_image.dart';
+import '../widgets/seo_text.dart';
 
 class HomePage extends StatelessWidget {
   final Size size;
   final IpData? ipData;
 
-  const HomePage({required Key key, required this.size, this.ipData}) : super(key: key);
+  // final WeatherData? weatherData;
+
+  const HomePage({required Key key, required this.size, this.ipData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +32,44 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Hello folks over there ${ipData != null ? "from ${ipData?.city}" : ""},",
-                    style: const TextStyle(color: Colors.white, fontSize: 32),
+                  FlipInY(
+                    child: CrazySeoText(
+                      text:
+                          "Hello folks over there ${ipData != null ? "from ${ipData?.city}" : ""},",
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
+                    ),
                   ),
+                  // if (weatherData != null)
+                  //   ElasticInLeft(
+                  //     child: Row(
+                  //       mainAxisSize: MainAxisSize.min,
+                  //       children: [
+                  //         Container(
+                  //           height: 30,
+                  //           width: 30,
+                  //           decoration: const BoxDecoration(
+                  //             shape: BoxShape.circle,
+                  //             color: Colors.white,
+                  //           ),
+                  //           child: CrazySeoImage(
+                  //             src:
+                  //                 "http://openweathermap.org/img/wn/${weatherData?.weather.first.icon}@2x.png",
+                  //             child: Image.network(
+                  //                 "http://openweathermap.org/img/wn/${weatherData?.weather.first.icon}@2x.png"),
+                  //           ),
+                  //         ),
+                  //         Flexible(
+                  //           child: CrazySeoText(
+                  //             text:
+                  //                 " Its ${(weatherData?.main.temp ?? 0).toStringAsFixed(2)} °C there ,"
+                  //                 "weather is ${weatherData?.weather.single.main}",
+                  //             style: const TextStyle(
+                  //                 color: Colors.white70, fontSize: 18),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -35,20 +77,34 @@ class HomePage extends StatelessWidget {
                     animate: true,
                     duration: const Duration(seconds: 2),
                     delay: const Duration(seconds: 1),
-                    child: const Text(
-                      "I am Bibek ranjan saha",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 62,
-                          fontWeight: FontWeight.w900),
+                    child: Wrap(
+                      children: [
+                        const CrazySeoText(
+                          text: "I am Bibek ranjan saha",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 52,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        CrazySeoImage(
+                          src: NetworkAssets.waveIconMS,
+                          child: Image.network(
+                            NetworkAssets.waveIconMS,
+                            width: 50,
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       FadeIn(
-                        child: const Text(
-                          "Mobile Developer",
+                        child: const CrazySeoText(
+                          text: "Mobile Developer",
                           style: TextStyle(
                               color: Colors.white54,
                               fontSize: 22,
@@ -59,8 +115,12 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(20.0),
                         child: Pulse(
                           child: ElevatedButton(
-                              onPressed: () {},
-                              child: const Text("Download CV")),
+                            onPressed: () async {
+                              String url = await ApiRepo().getResume();
+                              await launchUrl(Uri.parse(url));
+                            },
+                            child: const CrazySeoText(text: "Download RESUME"),
+                          ),
                         ),
                       )
                     ],
@@ -71,9 +131,12 @@ class HomePage extends StatelessWidget {
           ),
         ),
         if (size.width > 700)
-          Image.network(
-            Assets.bibek,
-            fit: BoxFit.contain,
+          CrazySeoImage(
+            src: NetworkAssets.bibekFull,
+            child: Image.network(
+              NetworkAssets.bibekFull,
+              fit: BoxFit.contain,
+            ),
           ),
       ]),
     );

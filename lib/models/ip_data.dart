@@ -11,68 +11,44 @@ String ipDataToJson(IpData data) => json.encode(data.toJson());
 
 class IpData {
   IpData({
-    required this.status,
-    required this.country,
-    required this.countryCode,
-    required this.region,
-    required this.regionName,
+    required this.ip,
     required this.city,
-    required this.zip,
-    required this.lat,
-    required this.lon,
-    required this.timezone,
-    required this.isp,
+    required this.region,
+    required this.country,
+    required this.loc,
     required this.org,
-    required this.ipDataAs,
-    required this.query,
+    required this.postal,
+    required this.timezone,
   });
 
-  String status;
-  String country;
-  String countryCode;
-  String region;
-  String regionName;
-  String city;
-  String zip;
-  double lat;
-  double lon;
-  String timezone;
-  String isp;
-  String org;
-  String ipDataAs;
-  String query;
+  String? ip;
+  String? city;
+  String? region;
+  String? country;
+  String? loc;
+  String? org;
+  String? postal;
+  String? timezone;
 
   factory IpData.fromJson(Map<String, dynamic> json) => IpData(
-    status: json["status"],
-    country: json["country"],
-    countryCode: json["countryCode"],
-    region: json["region"],
-    regionName: json["regionName"],
+    ip: json["ip"],
     city: json["city"],
-    zip: json["zip"],
-    lat: json["lat"].toDouble(),
-    lon: json["lon"].toDouble(),
-    timezone: json["timezone"],
-    isp: json["isp"],
+    region: json["region"],
+    country: json["country"],
+    loc: json["loc"],
     org: json["org"],
-    ipDataAs: json["as"],
-    query: json["query"],
+    postal: json["postal"],
+    timezone: json["timezone"],
   );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "country": country,
-    "countryCode": countryCode,
-    "region": region,
-    "regionName": regionName,
+    "ip": ip,
     "city": city,
-    "zip": zip,
-    "lat": lat,
-    "lon": lon,
-    "timezone": timezone,
-    "isp": isp,
+    "region": region,
+    "country": country,
+    "loc": loc,
     "org": org,
-    "as": ipDataAs,
-    "query": query,
+    "postal": postal,
+    "timezone": timezone,
   };
 }
