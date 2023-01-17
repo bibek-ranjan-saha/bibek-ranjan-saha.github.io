@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:seo/html/seo_widget.dart';
 
@@ -11,14 +10,9 @@ class CrazySeoText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return kIsWeb
-        ? Seo.text(
-            text: text,
-            child: Text(text, style: style),
-          )
-        : Text(text,
-            style: style?.copyWith(overflow: TextOverflow.ellipsis) ??
-                const TextStyle(
-                    overflow: TextOverflow.ellipsis, color: Colors.white));
+    return Seo.text(
+      text: text,
+      child: Text(text, style: style),
+    );
   }
 }

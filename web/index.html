@@ -15,7 +15,7 @@
       the `--base-href` argument provided to `flutter build`.
     -->
 <!--    <base href="https://bibek-ranjan-saha.github.io/">-->
-    <base href="$FLUTTER_BASE_HREF">
+    <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -111,7 +111,14 @@ body
   window.flutterWebRenderer = "html";
 
 </script>
+<script src="main.dart.js" type="application/javascript"></script>
 <script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('flutter-first-frame', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js');
+        navigator.serviceWorker.register('flutter_service_worker.js');
+      });
+    }
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -124,7 +131,6 @@ body
         return appRunner.runApp();
       });
     });
-
-</script>
+  </script>
 </body>
 </html>

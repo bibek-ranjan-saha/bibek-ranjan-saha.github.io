@@ -85,7 +85,7 @@ class _SocialIconsState extends State<SocialIcons> {
               padding: const EdgeInsets.all(8.0),
               child: CrazySeoImage(
                 src: widget.icon,
-                child: Image.network(
+                child: Image.asset(
                   widget.icon,
                   width: 36,
                   height: 36,

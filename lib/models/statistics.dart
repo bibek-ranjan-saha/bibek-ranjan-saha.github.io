@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-Statistics? statisticsFromJson(String str) => Statistics.fromJson(json.decode(str));
+Statistics? statisticsFromJson(String str) =>
+    Statistics.fromJson(json.decode(str));
 
 String statisticsToJson(Statistics? data) => json.encode(data!.toJson());
 
@@ -28,24 +29,42 @@ class Statistics {
   int? v;
 
   factory Statistics.fromJson(Map<String, dynamic> json) => Statistics(
-    totalCount: json["totalCount"],
-    id: json["_id"],
-    countries: json["countries"] == null ? [] : List<City?>.from(json["countries"]!.map((x) => City.fromJson(x))),
-    cities: json["cities"] == null ? [] : List<City?>.from(json["cities"]!.map((x) => City.fromJson(x))),
-    regions: json["regions"] == null ? [] : List<Region?>.from(json["regions"]!.map((x) => Region.fromJson(x))),
-    serviceProviders: json["serviceProviders"] == null ? [] : List<ServiceProvider?>.from(json["serviceProviders"]!.map((x) => ServiceProvider.fromJson(x))),
-    v: json["__v"],
-  );
+        totalCount: json["totalCount"],
+        id: json["_id"],
+        countries: json["countries"] == null
+            ? []
+            : List<City?>.from(json["countries"]!.map((x) => City.fromJson(x))),
+        cities: json["cities"] == null
+            ? []
+            : List<City?>.from(json["cities"]!.map((x) => City.fromJson(x))),
+        regions: json["regions"] == null
+            ? []
+            : List<Region?>.from(
+                json["regions"]!.map((x) => Region.fromJson(x))),
+        serviceProviders: json["serviceProviders"] == null
+            ? []
+            : List<ServiceProvider?>.from(json["serviceProviders"]!
+                .map((x) => ServiceProvider.fromJson(x))),
+        v: json["__v"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "totalCount": totalCount,
-    "_id": id,
-    "countries": countries == null ? [] : List<dynamic>.from(countries!.map((x) => x!.toJson())),
-    "cities": cities == null ? [] : List<dynamic>.from(cities!.map((x) => x!.toJson())),
-    "regions": regions == null ? [] : List<dynamic>.from(regions!.map((x) => x!.toJson())),
-    "serviceProviders": serviceProviders == null ? [] : List<dynamic>.from(serviceProviders!.map((x) => x!.toJson())),
-    "__v": v,
-  };
+        "totalCount": totalCount,
+        "_id": id,
+        "countries": countries == null
+            ? []
+            : List<dynamic>.from(countries!.map((x) => x!.toJson())),
+        "cities": cities == null
+            ? []
+            : List<dynamic>.from(cities!.map((x) => x!.toJson())),
+        "regions": regions == null
+            ? []
+            : List<dynamic>.from(regions!.map((x) => x!.toJson())),
+        "serviceProviders": serviceProviders == null
+            ? []
+            : List<dynamic>.from(serviceProviders!.map((x) => x!.toJson())),
+        "__v": v,
+      };
 }
 
 class City {
@@ -60,16 +79,16 @@ class City {
   String? id;
 
   factory City.fromJson(Map<String, dynamic> json) => City(
-    name: json["name"],
-    count: json["count"],
-    id: json["_id"],
-  );
+        name: json["name"],
+        count: json["count"],
+        id: json["_id"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "count": count,
-    "_id": id,
-  };
+        "name": name,
+        "count": count,
+        "_id": id,
+      };
 }
 
 class Region {
@@ -90,22 +109,22 @@ class Region {
   String? id;
 
   factory Region.fromJson(Map<String, dynamic> json) => Region(
-    name: json["name"],
-    code: json["code"],
-    timeZone: json["timeZone"],
-    latlong: json["latlong"],
-    count: json["count"],
-    id: json["_id"],
-  );
+        name: json["name"],
+        code: json["code"],
+        timeZone: json["timeZone"],
+        latlong: json["latlong"],
+        count: json["count"],
+        id: json["_id"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "code": code,
-    "timeZone": timeZone,
-    "latlong": latlong,
-    "count": count,
-    "_id": id,
-  };
+        "name": name,
+        "code": code,
+        "timeZone": timeZone,
+        "latlong": latlong,
+        "count": count,
+        "_id": id,
+      };
 }
 
 class ServiceProvider {
@@ -121,17 +140,18 @@ class ServiceProvider {
   int? count;
   String? id;
 
-  factory ServiceProvider.fromJson(Map<String, dynamic> json) => ServiceProvider(
-    org: json["org"],
-    ip: json["ip"],
-    count: json["count"],
-    id: json["_id"],
-  );
+  factory ServiceProvider.fromJson(Map<String, dynamic> json) =>
+      ServiceProvider(
+        org: json["org"],
+        ip: json["ip"],
+        count: json["count"],
+        id: json["_id"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "org": org,
-    "ip": ip,
-    "count": count,
-    "_id": id,
-  };
+        "org": org,
+        "ip": ip,
+        "count": count,
+        "_id": id,
+      };
 }

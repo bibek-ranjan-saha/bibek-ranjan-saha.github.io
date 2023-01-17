@@ -66,456 +66,421 @@ class AboutPage extends StatelessWidget {
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          // color: Colors.grey.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.white, width: 2)),
-                      padding: const EdgeInsets.all(10),
-                      width: size.width > 1000
-                          ? (size.width / 2) - 40
-                          : size.width,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: const [
-                              Flexible(
-                                child: CrazySeoText(
-                                  text: "Languages",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_circle_right_rounded,
-                                color: Colors.white,
-                                size: 24,
-                              )
-                            ],
-                          ),
-                          const KnowledgeCard(
-                            skillValue: 0.9,
-                            skillName: 'Java',
-                          ),
-                          const KnowledgeCard(
-                            skillValue: 0.7,
-                            skillName: 'Kotlin',
-                          ),
-                          const KnowledgeCard(
-                            skillValue: 0.8,
-                            skillName: 'Dart',
-                          ),
-                          const KnowledgeCard(
-                            skillValue: 0.8,
-                            skillName: 'SQL',
-                          ),
-                          const KnowledgeCard(
-                            skillValue: 0.6,
-                            skillName: 'Python',
-                          ),
-                          const SizedBox(height: 12),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.white, width: 2)),
-                      padding: const EdgeInsets.all(10),
-                      width: size.width > 800 ? size.width * 0.47 : size.width,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: const [
-                              Flexible(
-                                child: CrazySeoText(
-                                  text: "Skills",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_circle_right_rounded,
-                                color: Colors.white,
-                                size: 24,
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Wrap(
-                              runSpacing: 12,
-                              spacing: 12,
-                              children: const [
-                                CircularProgress(
-                                  value: 0.9,
-                                  skill: "Flutter",
-                                ),
-                                CircularProgress(
-                                  value: 0.7,
-                                  skill: "Android App",
-                                ),
-                                CircularProgress(
-                                  value: 0.8,
-                                  skill: "Firebase",
-                                ),
-                                CircularProgress(
-                                  value: 0.4,
-                                  skill: "Node js",
-                                ),
-                              ],
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white, width: 2)),
+                  padding: const EdgeInsets.all(10),
+                  width: size.width > 1000 ? (size.width / 2) - 40 : size.width,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: const [
+                          Flexible(
+                            child: CrazySeoText(
+                              text: "Languages",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900),
                             ),
                           ),
-                          Row(
-                            children: const [
-                              Flexible(
-                                child: CrazySeoText(
-                                  text: "Knowledge",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_circle_right_rounded,
-                                color: Colors.white,
-                                size: 24,
-                              )
-                            ],
+                          SizedBox(
+                            width: 10,
                           ),
-                          Wrap(
-                            spacing: 12,
-                            runSpacing: 12,
-                            children: [
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconAndroid,
-                                      child: Image.network(
-                                          NetworkAssets.iconAndroid))),
-                              const FlutterLogo(size: 50),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconJava,
-                                      child: Image.network(
-                                          NetworkAssets.iconJava))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconPostman,
-                                      child: Image.network(
-                                          NetworkAssets.iconPostman))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconGIT,
-                                      child: Image.network(
-                                          NetworkAssets.iconGIT))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconFirebase,
-                                      child: Image.network(
-                                          NetworkAssets.iconFirebase))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconArduino,
-                                      child: Image.network(
-                                          NetworkAssets.iconArduino))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconMySQL,
-                                      child: Image.network(
-                                          NetworkAssets.iconMySQL))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconLinux,
-                                      child: Image.network(
-                                          NetworkAssets.iconLinux))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconPython,
-                                      child: Image.network(
-                                          NetworkAssets.iconPython))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconKotlin,
-                                      child: Image.network(
-                                          NetworkAssets.iconKotlin))),
-                              Container(
-                                  width: 50,
-                                  height: 50,
-                                  color: Colors.white,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconUnity,
-                                      child: Image.network(
-                                          NetworkAssets.iconUnity))),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: CrazySeoImage(
-                                      src: NetworkAssets.iconDart,
-                                      child: Image.network(
-                                          NetworkAssets.iconDart))),
-                            ],
+                          Icon(
+                            Icons.arrow_circle_right_rounded,
+                            color: Colors.white,
+                            size: 24,
                           )
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.white, width: 2)),
-                      padding: const EdgeInsets.all(10),
-                      width: size.width > 800 ? size.width * 0.47 : size.width,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: const [
-                              Flexible(
-                                child: CrazySeoText(
-                                  text: "Education & Qualifications",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_circle_right_rounded,
-                                color: Colors.white,
-                                size: 24,
-                              )
-                            ],
-                          ),
-                          const KnowledgeCard(
-                            showPercentage: true,
-                            skillValue: 0.85,
-                            skillName:
-                                'GIET University, Gunupur odisha 2023 (B.tech CSE with cyber security specialization)',
-                          ),
-                          const KnowledgeCard(
-                            showPercentage: true,
-                            skillValue: 0.64,
-                            skillName:
-                                'Navajyoti Science Higher Secondary School 2017,BBSR (+2 Science)',
-                          ),
-                          const KnowledgeCard(
-                            showPercentage: true,
-                            skillValue: 0.74,
-                            skillName:
-                                'Saraswati Vidya Mandir Kesinga , Kalahandi 2015 (10th )',
-                          ),
-                          const SizedBox(height: 12),
-                        ],
+                      const KnowledgeCard(
+                        skillValue: 0.9,
+                        skillName: 'Java',
                       ),
-                    ),
+                      const KnowledgeCard(
+                        skillValue: 0.7,
+                        skillName: 'Kotlin',
+                      ),
+                      const KnowledgeCard(
+                        skillValue: 0.8,
+                        skillName: 'Dart',
+                      ),
+                      const KnowledgeCard(
+                        skillValue: 0.8,
+                        skillName: 'SQL',
+                      ),
+                      const KnowledgeCard(
+                        skillValue: 0.6,
+                        skillName: 'Python',
+                      ),
+                      const SizedBox(height: 12),
+                    ],
                   ),
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.white, width: 2)),
-                      padding: const EdgeInsets.all(10),
-                      width: size.width > 800 ? size.width * 0.47 : size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: const [
-                              Flexible(
-                                child: CrazySeoText(
-                                  text: "Internships & Certifications",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_circle_right_rounded,
-                                color: Colors.white,
-                                size: 24,
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          const CrazySeoText(
-                            text: " → HighRadius Technology (ARPA Intern) ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          const CrazySeoText(
-                            text:
-                                "Worked on java and internal framework to automate other business processes like invoice,claim and deduction over email or through web portal. "
-                                "\n Dated : 06/2022 to present",
-                            style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          const CrazySeoText(
-                            text: " → FedSea inc. (Flutter Developer Lead) ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          const CrazySeoText(
-                            text:
-                                "Lead a team of around 4 people where I used to guide"
-                                " on feature deliverables,code refactoring and "
-                                "review and api structuring with backend team "
-                                "along with"
-                                " user research. "
-                                "\n Dated : 05/2022 to 06/2022",
-                            style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 8.0, right: 8, top: 8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                CrazySeoText(
-                                  text: " → FedSea inc. (Flutter Developer) ",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                                CrazySeoText(
-                                  text:
-                                      "Delivered features like chat with socket,file "
-                                      "uploading,rest api calls for other "
-                                      "features and ui animations. "
-                                      "\n Dated : 03/2022 to 05/2022",
-                                  style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ],
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white, width: 2)),
+                  padding: const EdgeInsets.all(10),
+                  width: size.width > 800 ? size.width * 0.47 : size.width,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: const [
+                          Flexible(
+                            child: CrazySeoText(
+                              text: "Skills",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900),
                             ),
                           ),
-                          const SizedBox(
-                            height: 12,
+                          SizedBox(
+                            width: 10,
                           ),
-                          const CrazySeoText(
-                            text: " → Liveasy (Flutter Developer) ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          const CrazySeoText(
-                            text:
-                                "Worked on their main app based on logistics which is"
-                                " live on play-store with features like live "
-                                "trucks tracking service, managing all driver and trucks. "
-                                "\n Dated : 09/2022 to 11/2022",
-                            style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          const CrazySeoText(
-                            text:
-                                " → Era Interface (Software Development Apprenticeship) ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          const CrazySeoText(
-                            text:
-                                "Created a instagram clone with flutter and dart "
-                                "consuming api from rapid api and reimagined ui "
-                                "with animation and basic operations like camera,"
-                                "story,feed,account etc. "
-                                "\n Dated : 05/2021 to 09/2021",
-                            style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
+                          Icon(
+                            Icons.arrow_circle_right_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          )
                         ],
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Wrap(
+                          runSpacing: 12,
+                          spacing: 12,
+                          children: const [
+                            CircularProgress(
+                              value: 0.9,
+                              skill: "Flutter",
+                            ),
+                            CircularProgress(
+                              value: 0.7,
+                              skill: "Android App",
+                            ),
+                            CircularProgress(
+                              value: 0.8,
+                              skill: "Firebase",
+                            ),
+                            CircularProgress(
+                              value: 0.4,
+                              skill: "Node js",
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: const [
+                          Flexible(
+                            child: CrazySeoText(
+                              text: "Knowledge",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.arrow_circle_right_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: [
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconAndroid,
+                                  child: Image.asset(AssetAssets.iconAndroid))),
+                          const FlutterLogo(size: 50),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconJava,
+                                  child: Image.asset(AssetAssets.iconJava))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconPostman,
+                                  child: Image.asset(AssetAssets.iconPostman))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconGIT,
+                                  child: Image.asset(AssetAssets.iconGIT))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconFirebase,
+                                  child:
+                                      Image.asset(AssetAssets.iconFirebase))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconArduino,
+                                  child: Image.asset(AssetAssets.iconArduino))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconMySQL,
+                                  child: Image.asset(AssetAssets.iconMySQL))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconLinux,
+                                  child: Image.asset(AssetAssets.iconLinux))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconPython,
+                                  child: Image.asset(AssetAssets.iconPython))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconKotlin,
+                                  child: Image.asset(AssetAssets.iconKotlin))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              // color: Colors.white,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconUnity,
+                                  child: Image.asset(AssetAssets.iconUnity))),
+                          SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CrazySeoImage(
+                                  src: AssetAssets.iconDart,
+                                  child: Image.asset(AssetAssets.iconDart))),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white, width: 2)),
+                  padding: const EdgeInsets.all(10),
+                  width: size.width > 800 ? size.width * 0.47 : size.width,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: const [
+                          Flexible(
+                            child: CrazySeoText(
+                              text: "Education & Qualifications",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.arrow_circle_right_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                      const KnowledgeCard(
+                        showPercentage: true,
+                        skillValue: 0.85,
+                        skillName:
+                            'GIET University, Gunupur odisha 2023 (B.tech CSE with cyber security specialization)',
+                      ),
+                      const KnowledgeCard(
+                        showPercentage: true,
+                        skillValue: 0.64,
+                        skillName:
+                            'Navajyoti Science Higher Secondary School 2017,BBSR (+2 Science)',
+                      ),
+                      const KnowledgeCard(
+                        showPercentage: true,
+                        skillValue: 0.74,
+                        skillName:
+                            'Saraswati Vidya Mandir Kesinga , Kalahandi 2015 (10th )',
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white, width: 2)),
+                  padding: const EdgeInsets.all(10),
+                  width: size.width > 800 ? size.width * 0.47 : size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: const [
+                          Flexible(
+                            child: CrazySeoText(
+                              text: "Internships & Certifications",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.arrow_circle_right_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const CrazySeoText(
+                        text: " → HighRadius Technology (ARPA Intern) ",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const CrazySeoText(
+                        text:
+                            "Worked on java and internal framework to automate other business processes like invoice,claim and deduction over email or through web portal. "
+                            "\n Dated : 06/2022 to present",
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const CrazySeoText(
+                        text: " → FedSea inc. (Flutter Developer Lead) ",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const CrazySeoText(
+                        text:
+                            "Lead a team of around 4 people where I used to guide"
+                            " on feature deliverables,code refactoring and "
+                            "review and api structuring with backend team "
+                            "along with"
+                            " user research. "
+                            "\n Dated : 05/2022 to 06/2022",
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 8.0, right: 8, top: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            CrazySeoText(
+                              text: " → FedSea inc. (Flutter Developer) ",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                            CrazySeoText(
+                              text:
+                                  "Delivered features like chat with socket,file "
+                                  "uploading,rest api calls for other "
+                                  "features and ui animations. "
+                                  "\n Dated : 03/2022 to 05/2022",
+                              style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const CrazySeoText(
+                        text: " → Liveasy (Flutter Developer) ",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const CrazySeoText(
+                        text:
+                            "Worked on their main app based on logistics which is"
+                            " live on play-store with features like live "
+                            "trucks tracking service, managing all driver and trucks. "
+                            "\n Dated : 09/2022 to 11/2022",
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const CrazySeoText(
+                        text:
+                            " → Era Interface (Software Development Apprenticeship) ",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const CrazySeoText(
+                        text: "Created a instagram clone with flutter and dart "
+                            "consuming api from rapid api and reimagined ui "
+                            "with animation and basic operations like camera,"
+                            "story,feed,account etc. "
+                            "\n Dated : 05/2021 to 09/2021",
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -523,96 +488,90 @@ class AboutPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.white, width: 2)),
-                  padding: const EdgeInsets.all(10),
-                  child: const ExpansionTile(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.white, width: 2)),
+              padding: const EdgeInsets.all(10),
+              child: const ExpansionTile(
+                title: CrazySeoText(
+                  text: "Personal details",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w900),
+                ),
+                iconColor: Colors.white,
+                textColor: Colors.white,
+                collapsedIconColor: Colors.white,
+                children: [
+                  ListTile(
                     title: CrazySeoText(
-                      text: "Personal details",
+                      text: " ▪ Address ",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 28,
+                          fontSize: 20,
                           fontWeight: FontWeight.w900),
                     ),
-                    iconColor: Colors.white,
-                    textColor: Colors.white,
-                    collapsedIconColor: Colors.white,
-                    children: [
-                      ListTile(
-                        title: CrazySeoText(
-                          text: " ▪ Address ",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900),
-                        ),
-                        subtitle: CrazySeoText(
-                          text:
-                              "Subash marg, BoringPadar Kesinga Kalahandi Odisha "
-                              "India pin -766012",
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                      ListTile(
-                        title: CrazySeoText(
-                          text: " ▪ Date Of Birth ",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900),
-                        ),
-                        subtitle: CrazySeoText(
-                          text: "13/06/2002",
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                      ListTile(
-                        title: CrazySeoText(
-                          text: " ▪ Father's name ",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900),
-                        ),
-                        subtitle: CrazySeoText(
-                          text: "Kishore Chandra Saha",
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                      ListTile(
-                        title: CrazySeoText(
-                          text: " ▪ Language Known ",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900),
-                        ),
-                        subtitle: CrazySeoText(
-                          text: "Hindi, English, Odia",
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                    ],
+                    subtitle: CrazySeoText(
+                      text: "Subash marg, BoringPadar Kesinga Kalahandi Odisha "
+                          "India pin -766012",
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
+                    ),
                   ),
-                ),
+                  ListTile(
+                    title: CrazySeoText(
+                      text: " ▪ Date Of Birth ",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    subtitle: CrazySeoText(
+                      text: "13/06/2002",
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  ListTile(
+                    title: CrazySeoText(
+                      text: " ▪ Father's name ",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    subtitle: CrazySeoText(
+                      text: "Kishore Chandra Saha",
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  ListTile(
+                    title: CrazySeoText(
+                      text: " ▪ Language Known ",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    subtitle: CrazySeoText(
+                      text: "Hindi, English, Odia",
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                ],
               ),
             ),
           )

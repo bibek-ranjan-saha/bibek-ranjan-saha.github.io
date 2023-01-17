@@ -2,7 +2,6 @@
 //
 //     final ipData = ipDataFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 IpData ipDataFromJson(String str) => IpData.fromJson(json.decode(str));
@@ -31,24 +30,24 @@ class IpData {
   String? timezone;
 
   factory IpData.fromJson(Map<String, dynamic> json) => IpData(
-    ip: json["ip"],
-    city: json["city"],
-    region: json["region"],
-    country: json["country"],
-    loc: json["loc"],
-    org: json["org"],
-    postal: json["postal"],
-    timezone: json["timezone"],
-  );
+        ip: json["ip"],
+        city: json["city"],
+        region: json["region"],
+        country: json["country"],
+        loc: json["loc"],
+        org: json["org"],
+        postal: json["postal"],
+        timezone: json["timezone"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "ip": ip,
-    "city": city,
-    "region": region,
-    "country": country,
-    "loc": loc,
-    "org": org,
-    "postal": postal,
-    "timezone": timezone,
-  };
+        "ip": ip,
+        "city": city,
+        "region": region,
+        "country": country,
+        "loc": loc,
+        "org": org,
+        "postal": postal,
+        "timezone": timezone,
+      };
 }

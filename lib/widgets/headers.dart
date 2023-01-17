@@ -57,8 +57,8 @@ class _HeadTextState extends State<HeadText> {
               ),
               child: Text(
                 widget.title,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 16),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
           ),

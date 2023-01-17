@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:seo/html/seo_widget.dart';
 
 class CrazySeoImage extends StatelessWidget {
@@ -11,8 +10,6 @@ class CrazySeoImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return kIsWeb
-        ? Seo.image(alt: "Bibek Ranjan Saha", src: src, child: child)
-        : child;
+    return Seo.image(alt: "Bibek Ranjan Saha", src: src, child: child);
   }
 }

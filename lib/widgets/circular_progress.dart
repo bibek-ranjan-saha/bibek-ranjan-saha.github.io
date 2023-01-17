@@ -5,7 +5,8 @@ class CircularProgress extends StatelessWidget {
   final double value;
   final String skill;
 
-  const CircularProgress({Key? key, required this.value, required this.skill}) : super(key: key);
+  const CircularProgress({Key? key, required this.value, required this.skill})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,11 @@ class CircularProgress extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: CrazySeoText(
-                    text :
-                    "${100 * value} %",
+                    text: "${100 * value} %",
                     style: const TextStyle(
-                        color: Colors.white, fontSize: 24, fontWeight: FontWeight.w900),
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900),
                   ),
                 )
               ],
@@ -42,7 +44,7 @@ class CircularProgress extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: CrazySeoText(
-              text : skill,
+              text: skill,
               style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,

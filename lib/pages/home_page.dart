@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bibek_ranjan_saha/assets/images.dart';
-import 'package:bibek_ranjan_saha/models/ip_data.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,12 +9,16 @@ import '../widgets/seo_text.dart';
 
 class HomePage extends StatelessWidget {
   final Size size;
-  final IpData? ipData;
+
+  // final IpData? ipData;
 
   // final WeatherData? weatherData;
 
-  const HomePage({required Key key, required this.size, this.ipData})
-      : super(key: key);
+  const HomePage({
+    required Key key,
+    required this.size,
+    // this.ipData
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +36,10 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FlipInY(
-                    child: CrazySeoText(
-                      text:
-                          "Hello folks over there ${ipData != null ? "from ${ipData?.city}" : ""},",
-                      style: const TextStyle(color: Colors.white, fontSize: 30),
+                    child: const CrazySeoText(
+                      text: "Hello folks over there ",
+                      // "${ipData != null ? "from ${ipData?.city}" : ""},",
+                      style: TextStyle(color: Colors.white, fontSize: 30),
                     ),
                   ),
                   // if (weatherData != null)
@@ -54,7 +57,7 @@ class HomePage extends StatelessWidget {
                   //           child: CrazySeoImage(
                   //             src:
                   //                 "http://openweathermap.org/img/wn/${weatherData?.weather.first.icon}@2x.png",
-                  //             child: Image.network(
+                  //             child: Image.asset(name)(
                   //                 "http://openweathermap.org/img/wn/${weatherData?.weather.first.icon}@2x.png"),
                   //           ),
                   //         ),
@@ -90,9 +93,9 @@ class HomePage extends StatelessWidget {
                           width: 10,
                         ),
                         CrazySeoImage(
-                          src: NetworkAssets.waveIconMS,
-                          child: Image.network(
-                            NetworkAssets.waveIconMS,
+                          src: AssetAssets.waveIconMS,
+                          child: Image.asset(
+                            AssetAssets.waveIconMS,
                             width: 50,
                           ),
                         )
@@ -106,7 +109,7 @@ class HomePage extends StatelessWidget {
                         child: const CrazySeoText(
                           text: "Mobile Developer",
                           style: TextStyle(
-                              color: Colors.white54,
+                              color: Colors.white70,
                               fontSize: 22,
                               fontWeight: FontWeight.bold),
                         ),
@@ -132,9 +135,9 @@ class HomePage extends StatelessWidget {
         ),
         if (size.width > 700)
           CrazySeoImage(
-            src: NetworkAssets.bibekFull,
-            child: Image.network(
-              NetworkAssets.bibekFull,
+            src: AssetAssets.bibekFull,
+            child: Image.asset(
+              AssetAssets.bibekFull,
               fit: BoxFit.contain,
             ),
           ),

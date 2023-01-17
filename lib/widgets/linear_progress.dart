@@ -10,8 +10,10 @@ class LinearProgress extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
       child: LinearProgressIndicator(
-          value: value, color: Colors.lightGreenAccent, minHeight: 12,
-          backgroundColor : Colors.white70),
+          value: value,
+          color: Colors.lightGreenAccent,
+          minHeight: 12,
+          backgroundColor: Colors.white70),
     );
   }
 }
