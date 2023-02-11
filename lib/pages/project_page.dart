@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:bibek_ranjan_saha/models/repo_data.dart';
 import 'package:bibek_ranjan_saha/widgets/project_card.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,14 @@ class ProjectPage extends StatelessWidget {
                     crossAxisSpacing: 4,
                     children: [
                       for (RepoData e in snapshot.data ?? [])
-                        if (!e.fork) ProjectCard(e: e)
+                        if (!e.fork)
+                          ElasticInUp(
+                            delay: Duration(
+                              milliseconds:
+                                  200 * (snapshot.data?.indexOf(e) ?? 1),
+                            ),
+                            child: ProjectCard(e: e),
+                          )
                     ],
                   );
                 }

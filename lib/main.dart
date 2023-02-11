@@ -25,7 +25,7 @@ class App extends StatelessWidget {
             primarySwatch: Colors.lightGreen,
             useMaterial3: true,
         fontFamily: "customFont"),
-        home: const MainPage(),
+        home: MainPage(),
       ),
     );
   }

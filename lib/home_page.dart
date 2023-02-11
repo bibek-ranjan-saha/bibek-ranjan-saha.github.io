@@ -12,51 +12,45 @@ import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class MainPage extends StatelessWidget {
+  MainPage({Key? key}) : super(key: key);
 
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  final isWebMobile = kIsWeb &&
+  final bool isWebMobile = kIsWeb &&
       (defaultTargetPlatform == TargetPlatform.iOS ||
           defaultTargetPlatform == TargetPlatform.android);
 
   // Size size = const Size(0, 0);
 
-  List<Widget> pages = [];
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  ItemScrollController itemScrollController = ItemScrollController();
-  ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
-
-  @override
-  void didChangeDependencies() {
+  Widget build(BuildContext context) {
     var newSize = MediaQuery.of(context).size;
-    pages = [
+    List<Widget> pages = [
       HomePage(size: newSize),
       AboutPage(size: newSize),
       ProjectPage(size: newSize),
       ContactPage(size: newSize)
     ];
-    super.didChangeDependencies();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       endDrawer: Drawer(
         child: Column(
           children: [
             CrazySeoImage(
-                src: AssetAssets.bibek, child: Image.asset(AssetAssets.bibek)),
+              src: AssetAssets.bibek,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Image.asset(AssetAssets.bibek)),
+              ),
+            ),
             ListTile(
               onTap: () {
                 itemScrollController.scrollTo(
@@ -238,6 +232,9 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 20,
             )
           ],
         ),
