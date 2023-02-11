@@ -49,7 +49,7 @@ class AboutPage extends StatelessWidget {
             padding: EdgeInsets.only(left: 8.0),
             child: CrazySeoText(
               text: "I am Bibek from Odisha interested in app development be it"
-                  " Flutter or Kotlin and getting started with Node js.",
+                  " Flutter or Kotlin also learning Node js.",
               style: TextStyle(
                   color: Colors.white70,
                   fontSize: 18,

@@ -10,14 +10,9 @@ import '../widgets/seo_text.dart';
 class HomePage extends StatelessWidget {
   final Size size;
 
-  // final IpData? ipData;
-
-  // final WeatherData? weatherData;
-
   const HomePage({
-    required Key key,
+    Key? key,
     required this.size,
-    // this.ipData
   }) : super(key: key);
 
   @override
@@ -25,10 +20,11 @@ class HomePage extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       height: size.height,
-      child: Row(children: [
-        Expanded(
-          child: Center(
-            child: Padding(
+      child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
               padding: const EdgeInsets.only(left: 30.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -77,7 +73,6 @@ class HomePage extends StatelessWidget {
                     height: 20,
                   ),
                   Bounce(
-                    animate: true,
                     duration: const Duration(seconds: 2),
                     delay: const Duration(seconds: 1),
                     child: Wrap(
@@ -131,17 +126,15 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ),
-        if (size.width > 700)
-          CrazySeoImage(
-            src: AssetAssets.bibekFull,
-            child: Image.asset(
-              AssetAssets.bibekFull,
-              fit: BoxFit.contain,
-            ),
-          ),
-      ]),
+            if (size.width > 700)
+              CrazySeoImage(
+                src: AssetAssets.bibekFull,
+                child: Image.asset(
+                  AssetAssets.bibekFull,
+                  fit: BoxFit.contain,
+                ),
+              ),
+          ]),
     );
   }
 }

@@ -10,7 +10,7 @@ import '../widgets/social_icons.dart';
 class ContactPage extends StatelessWidget {
   final Size size;
 
-  const ContactPage({required Key key, required this.size}) : super(key: key);
+  const ContactPage({Key? key, required this.size}) : super(key: key);
 
   // getJokes() async {
   //   Timer.periodic(const Duration(seconds: 30), (timer) async {

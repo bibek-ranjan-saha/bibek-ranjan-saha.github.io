@@ -1,6 +1,5 @@
 import 'package:bibek_ranjan_saha/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:seo/html/seo_controller.dart';
 import 'package:seo/html/tree/widget_tree.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -25,7 +24,7 @@ class App extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.lightGreen,
             useMaterial3: true,
-            textTheme: GoogleFonts.ubuntuTextTheme()),
+        fontFamily: "customFont"),
         home: const MainPage(),
       ),
     );
