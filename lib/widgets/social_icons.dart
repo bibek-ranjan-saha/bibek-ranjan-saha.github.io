@@ -1,8 +1,8 @@
-import 'package:bibek_ranjan_saha/widgets/seo_image.dart';
-import 'package:bibek_ranjan_saha/widgets/seo_text.dart';
-import 'package:bibek_ranjan_saha/widgets/triangle.dart';
+import 'package:Bibek/services/app_service.dart';
+import 'package:Bibek/widgets/seo_image.dart';
+import 'package:Bibek/widgets/seo_text.dart';
+import 'package:Bibek/widgets/triangle.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SocialIcons extends StatefulWidget {
   final String icon;
@@ -28,8 +28,8 @@ class _SocialIconsState extends State<SocialIcons> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
-        await launchUrl(Uri.parse(widget.uri));
+      onTap: () {
+        AppService.launchAppUrl(widget.uri);
       },
       onHover: (hover) {
         setState(() {
@@ -40,9 +40,9 @@ class _SocialIconsState extends State<SocialIcons> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedSwitcher(
+          AnimatedContainer(
             duration: const Duration(milliseconds: 365),
-            reverseDuration: const Duration(milliseconds: 365),
+            height: 50,
             child: isHovered
                 ? Column(
                     children: [
@@ -71,7 +71,7 @@ class _SocialIconsState extends State<SocialIcons> {
                       ),
                     ],
                   )
-                : const SizedBox(),
+                : null,
           ),
           AnimatedContainer(
             decoration: BoxDecoration(

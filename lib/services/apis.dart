@@ -1,61 +1,82 @@
 import 'dart:convert';
 
+import 'package:Bibek/models/user_details.dart';
+import 'package:flutter/material.dart';
+
 import '../models/repo_data.dart';
+import '../models/statistics_data.dart';
+import '../models/weather_data.dart';
+import '../providers/data_provider.dart';
 import 'base_client.dart';
 
 class ApiRepo {
-  // Future<IpData> getIpData() async {
-  //   var data = await Api.instance.client.get("https://ipinfo.io/json?token=9e2ab41fbf6195");
-  //   return ipDataFromJson(jsonEncode(data.data));
+  static Future<UserDetails> getIpDataForStatistics() async {
+    var data = await Api.instance.getData(
+        "https://api.ipgeolocation.io/ipgeo?apiKey=4e28a84fc48644e68c5d885f3de64afa");
+    return userDetailsFromJson(jsonEncode(data.data));
+  }
+
+  static Future<String> getJoke() async {
+    var data = await Api.instance.getData("https://geek-jokes.sameerkumar"
+        ".website/api");
+    return data.data.toString();
+  }
+
+  // static void getIpData() async {
+  //   Response? data;
+  //
+  //   try {
+  //     data =
+  //         await Api.instance.getData("https://bibek-saha.onrender.com/test_ip");
+  //     js.context.callMethod("showAlert", ["$data"]);
+  //   } catch (e) {
+  //     js.context.callMethod("showAlert", ["$data with error $e"]);
+  //   }
   // }
 
-  // Future<String> getJoke() async {
-  //   var data = await Api.client.get(Uri.parse("https://geek-jokes.sameerkumar.website/api"));
-  //   return data.body;
-  // }
-
-  Future<List<RepoData>> getProjects() async {
-    var data = await Api.instance.client.get("https://api.github"
+  static Future<List<RepoData>> getProjects() async {
+    var data = await Api.instance.getData("https://api.github"
         ".com/users/bibek-ranjan-saha/repos");
     return repoDataFromJson(jsonEncode(data.data));
   }
 
-  // Future<WeatherData?> getWeatherInfo(String city) async {
-  //   var response = await Api.instance.client.get(
-  //       "http://api.openweathermap.org/data/2"
-  //       ".5/weather?q=$city&units=metric&appid=0645404ec6534ea39e7720b364e0a25f");
-  //   if (response.statusCode == 200) {
-  //     var jsonString = response.data;
-  //     return weatherDataFromJson(jsonEncode(jsonString));
-  //   }
-  //   return null;
-  // }
+  static Future<WeatherData?> getWeatherInfo(String city) async {
+    var response = await Api.instance.getData(
+        "https://api.openweathermap.org/data/2"
+            ".5/weather?q=$city&units=metric&appid=0645404ec6534ea39e7720b364e0a25f");
+    if (response.statusCode == 200) {
+      var jsonString = response.data;
+      return weatherDataFromJson(jsonEncode(jsonString));
+    }
+    return null;
+  }
 
-  // void getStats(IpData data, DataProvider provider) async {
-  //   try {
-  //     var response = await Api.instance.client.post(
-  //       "https://bibek-saha.onrender.com/api",
-  //       data: data.toJson(),
-  //     );
-  //     var stats = statisticsFromJson(jsonEncode(response.data));
-  //     provider.updateData(stats!);
-  //   } on Exception catch (e) {
-  //     debugPrint("new data error $e");
-  //   }
-  // }
-  //
-  // void getStatisticsUpdates(BuildContext context) async {
-  //   final socketClient = Api.instance.socket!;
-  //   socketClient.on('dataUpdate', (data) {
-  //     DataProvider provider = Provider.of<DataProvider>(context, listen: false);
-  //     var stats = statisticsFromJson(jsonEncode(data));
-  //     provider.updateData(stats!);
-  //   });
-  // }
+  static void getStats(UserDetails data, DataProvider provider) async {
+    try {
+      var response = await Api.instance.postData(
+        "https://bibek-saha.onrender.com/api",
+        data: data.toApiJson(),
+        needHeader: true
+      );
+      var stats = statisticsFromJson(jsonEncode(response.data));
+      provider.updateData(stats);
+    } catch (e) {
+      debugPrint("new data error $e ${data.toApiJson()}");
+    }
+  }
 
-  Future<String> getResume() async {
-    var response = await Api.instance.client
-        .get("https://bibek-ranjan-saha.github.io/apps_list/resume_link.json");
+  static void getStatisticsUpdates(DataProvider provider) async {
+    final socketClient = Api.instance.socket!;
+    socketClient.on('dataUpdate', (data) {
+      var stats = statisticsFromJson(jsonEncode(data));
+      provider.updateData(stats);
+    });
+  }
+
+  static Future<String> getResume() async {
+    var response = await Api.instance
+        .getData("https://bibek-ranjan-saha.github.io/apps_list/resume_link"
+            ".json");
     return response.data["link"].toString();
   }
 }

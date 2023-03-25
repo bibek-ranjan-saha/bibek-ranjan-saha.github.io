@@ -1,5 +1,6 @@
-name: bibek_ranjan_saha
-description: A new Flutter project.
+name: Bibek
+description: Portfolio of Bibek Ranjan Saha a Flutter Developer having around 1.5 years of 
+  experience
 
 publish_to: 'none'
 
@@ -13,12 +14,15 @@ dependencies:
     sdk: flutter
   url_launcher: ^6.1.7
   animate_do: ^3.0.2
-  seo: ^0.0.1
+  seo: ^0.0.4
   flutter_staggered_grid_view: ^0.6.2
   animated_flip_counter: ^0.2.5
   dio: ^4.0.6
   url_strategy: ^0.2.0
   scrollable_positioned_list: ^0.3.5
+  provider: ^6.0.5
+  socket_io_client: ^2.0.1
+  syncfusion_flutter_charts: ^20.4.51
 
 dev_dependencies:
   flutter_test:

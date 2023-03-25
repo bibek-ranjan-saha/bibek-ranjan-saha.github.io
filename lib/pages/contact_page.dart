@@ -1,181 +1,159 @@
-import 'dart:ui';
-
-import 'package:bibek_ranjan_saha/assets/images.dart';
+import 'package:Bibek/assets/images.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+import '../services/app_service.dart';
 import '../widgets/seo_text.dart';
 import '../widgets/social_icons.dart';
 
 class ContactPage extends StatelessWidget {
-  final Size size;
-
-  const ContactPage({Key? key, required this.size}) : super(key: key);
-
-  // getJokes() async {
-  //   Timer.periodic(const Duration(seconds: 30), (timer) async {
-  //     joke = await ApiRepo().getJoke();
-  //     setState(() {});
-  //   });
-  // }
+  const ContactPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return SizedBox(
       height: size.height * 0.45,
       child: Row(
         children: [
           if (size.width > 1000)
-            ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey.withOpacity(0.65),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey.withOpacity(0.65),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const CrazySeoText(
+                    text: "Address & Contact",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  Row(
                     children: [
-                      const CrazySeoText(
-                        text: "Address & Contact",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                            fontWeight: FontWeight.w900),
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(
+                              Icons.map_rounded,
+                              size: 45,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            FittedBox(
+                              child: CrazySeoText(
+                                text:
+                                    "Subash marg, Boring padar, Kesinga Kalahandi",
+                                style: TextStyle(
+                                    color: Colors.white54,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            FittedBox(
+                              child: CrazySeoText(
+                                text: "Odisha, India",
+                                style: TextStyle(
+                                    color: Colors.white54,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.map_rounded,
-                                  size: 45,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                FittedBox(
-                                  child: CrazySeoText(
-                                    text:
-                                        "Subash marg, Boring padar, Kesinga Kalahandi",
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.contact_mail,
+                              size: 45,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                AppService.launchEmail();
+                              },
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(
+                                      color: Colors.white54,
+                                      Icons.email_rounded,
+                                      size: 25,
+                                    ),
+                                    onPressed: () {
+                                      AppService.launchEmail();
+                                    },
+                                  ),
+                                  const FittedBox(
+                                    child: CrazySeoText(
+                                      text: "   bibeksahabiki@gmail.com",
+                                      style: TextStyle(
+                                          color: Colors.white54,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                AppService.launchAppUrl("tel:+91-7735336483");
+                              },
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.phone_rounded,
+                                      color: Colors.white54,
+                                      size: 25,
+                                    ),
+                                    onPressed: () {
+                                      AppService.launchAppUrl(
+                                          "tel:+91-7735336483");
+                                    },
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      AppService.sendSms();
+                                    },
+                                    icon: const Icon(
+                                      Icons.message_rounded,
+                                      color: Colors.white54,
+                                      size: 25,
+                                    ),
+                                  ),
+                                  const CrazySeoText(
+                                    text: "   +91-7735336483",
                                     style: TextStyle(
                                         color: Colors.white54,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                ),
-                                FittedBox(
-                                  child: CrazySeoText(
-                                    text: "Odisha, India",
-                                    style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.contact_mail,
-                                  size: 45,
-                                  color: Colors.white,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    launchEmail();
-                                  },
-                                  child: Row(
-                                    children: [
-                                      IconButton(
-                                        icon: const Icon(
-                                          color: Colors.white54,
-                                          Icons.email_rounded,
-                                          size: 25,
-                                        ),
-                                        onPressed: () => {launchEmail()},
-                                      ),
-                                      const FittedBox(
-                                        child: CrazySeoText(
-                                          text: "   bibeksahabiki@gmail.com",
-                                          style: TextStyle(
-                                              color: Colors.white54,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    await launchUrl(
-                                        Uri.parse("tel:+91-7735336483"));
-                                  },
-                                  child: Row(
-                                    children: [
-                                      IconButton(
-                                        icon: const Icon(
-                                          Icons.phone_rounded,
-                                          color: Colors.white54,
-                                          size: 25,
-                                        ),
-                                        onPressed: () async {
-                                          await launchUrl(
-                                              Uri.parse("tel:+91-7735336483"));
-                                        },
-                                      ),
-                                      IconButton(
-                                        onPressed: () async {
-                                          final Uri smsLaunchUri = Uri(
-                                            scheme: 'sms',
-                                            path: '+917735336483',
-                                            queryParameters: <String, String>{
-                                              'body': Uri.encodeComponent(
-                                                  'Hii catching you up from your portfolio lets get to a call'),
-                                            },
-                                          );
-                                          await launchUrl(smsLaunchUri);
-                                        },
-                                        icon: const Icon(
-                                          Icons.message_rounded,
-                                          color: Colors.white54,
-                                          size: 25,
-                                        ),
-                                      ),
-                                      const CrazySeoText(
-                                        text: "   +91-7735336483",
-                                        style: TextStyle(
-                                            color: Colors.white54,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
+                          ],
+                        ),
+                      ),
                     ],
-                  ),
-                ),
+                  )
+                ],
               ),
             ),
           Expanded(
@@ -255,9 +233,9 @@ class ContactPage extends StatelessWidget {
                                   ],
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    await launchUrl(Uri.parse(
-                                        'https://www.google.com/maps/search/?api=1&query=20.182958,83.212644'));
+                                  onTap: () {
+                                    AppService.launchAppUrl('https://www.google'
+                                        '.com/maps/search/?api=1&query=20.182958,83.212644');
                                   },
                                   child: const CrazySeoText(
                                     text:
@@ -269,9 +247,9 @@ class ContactPage extends StatelessWidget {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    await launchUrl(Uri.parse(
-                                        'https://www.google.com/maps/search/?api=1&query=20.2376,84.2700'));
+                                  onTap: () {
+                                    AppService.launchAppUrl(
+                                        'https://www.google.com/maps/search/?api=1&query=20.2376,84.2700');
                                   },
                                   child: const CrazySeoText(
                                     text: "Odisha, India",
@@ -306,8 +284,8 @@ class ContactPage extends StatelessWidget {
                                   ],
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    launchEmail();
+                                  onTap: () {
+                                    AppService.launchEmail();
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -318,7 +296,9 @@ class ContactPage extends StatelessWidget {
                                           Icons.email_rounded,
                                           size: 25,
                                         ),
-                                        onPressed: () => {launchEmail()},
+                                        onPressed: () {
+                                          AppService.launchEmail();
+                                        },
                                       ),
                                       const FittedBox(
                                         child: CrazySeoText(
@@ -333,9 +313,9 @@ class ContactPage extends StatelessWidget {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    await launchUrl(
-                                        Uri.parse("tel:+91-7735336483"));
+                                  onTap: () {
+                                    AppService.launchAppUrl(
+                                        "tel:+91-7735336483");
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -346,22 +326,14 @@ class ContactPage extends StatelessWidget {
                                           color: Colors.black54,
                                           size: 25,
                                         ),
-                                        onPressed: () async {
-                                          await launchUrl(
-                                              Uri.parse("tel:+91-7735336483"));
+                                        onPressed: () {
+                                          AppService.launchAppUrl(
+                                              "tel:+91-7735336483");
                                         },
                                       ),
                                       IconButton(
-                                        onPressed: () async {
-                                          final Uri smsLaunchUri = Uri(
-                                            scheme: 'sms',
-                                            path: '+917735336483',
-                                            queryParameters: <String, String>{
-                                              'body': Uri.encodeComponent(
-                                                  'Hii catching you up from your portfolio lets get to a call'),
-                                            },
-                                          );
-                                          await launchUrl(smsLaunchUri);
+                                        onPressed: () {
+                                          AppService.sendSms();
                                         },
                                         icon: const Icon(
                                           Icons.message_rounded,
@@ -415,9 +387,9 @@ class ContactPage extends StatelessWidget {
                                   ],
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    await launchUrl(Uri.parse(
-                                        'https://www.google.com/maps/search/?api=1&query=20.182958,83.212644'));
+                                  onTap: () {
+                                    AppService.launchAppUrl(
+                                        'https://www.google.com/maps/search/?api=1&query=20.182958,83.212644');
                                   },
                                   child: const CrazySeoText(
                                     text:
@@ -429,9 +401,9 @@ class ContactPage extends StatelessWidget {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    await launchUrl(Uri.parse(
-                                        'https://www.google.com/maps/search/?api=1&query=20.2376,84.2700'));
+                                  onTap: () {
+                                    AppService.launchAppUrl(
+                                        'https://www.google.com/maps/search/?api=1&query=20.2376,84.2700');
                                   },
                                   child: const CrazySeoText(
                                     text: "Odisha, India",
@@ -466,8 +438,8 @@ class ContactPage extends StatelessWidget {
                                   ],
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    launchEmail();
+                                  onTap: () {
+                                    AppService.launchEmail();
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -478,7 +450,9 @@ class ContactPage extends StatelessWidget {
                                           Icons.email_rounded,
                                           size: 25,
                                         ),
-                                        onPressed: () => {launchEmail()},
+                                        onPressed: () {
+                                          AppService.launchEmail();
+                                        },
                                       ),
                                       const FittedBox(
                                         child: CrazySeoText(
@@ -493,9 +467,9 @@ class ContactPage extends StatelessWidget {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    await launchUrl(
-                                        Uri.parse("tel:+91-7735336483"));
+                                  onTap: () {
+                                    AppService.launchAppUrl(
+                                        "tel:+91-7735336483");
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -506,22 +480,14 @@ class ContactPage extends StatelessWidget {
                                           color: Colors.black54,
                                           size: 25,
                                         ),
-                                        onPressed: () async {
-                                          await launchUrl(
-                                              Uri.parse("tel:+91-7735336483"));
+                                        onPressed: () {
+                                          AppService.launchAppUrl(
+                                              "tel:+91-7735336483");
                                         },
                                       ),
                                       IconButton(
-                                        onPressed: () async {
-                                          final Uri smsLaunchUri = Uri(
-                                            scheme: 'sms',
-                                            path: '+917735336483',
-                                            queryParameters: <String, String>{
-                                              'body': Uri.encodeComponent(
-                                                  'Hii catching you up from your portfolio lets get to a call'),
-                                            },
-                                          );
-                                          await launchUrl(smsLaunchUri);
+                                        onPressed: () {
+                                          AppService.sendSms();
                                         },
                                         icon: const Icon(
                                           Icons.message_rounded,
@@ -552,23 +518,5 @@ class ContactPage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void launchEmail() async {
-    String? encodeQueryParameters(Map<String, String> params) {
-      return params.entries
-          .map((MapEntry<String, String> e) =>
-              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-          .join('&');
-    }
-
-    final Uri emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path: 'bibeksahabiki@gmail.com',
-      query: encodeQueryParameters(<String, String>{
-        'subject': 'From your Portfolio',
-      }),
-    );
-    await launchUrl(emailLaunchUri);
   }
 }

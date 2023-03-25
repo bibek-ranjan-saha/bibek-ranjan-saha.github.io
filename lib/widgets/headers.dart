@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:seo/head_tag.dart';
 import 'package:seo/html/seo_widget.dart';
+
+import '../constants/values.dart';
 
 class HeadText extends StatefulWidget {
   final String title;
+  final int index;
 
-  const HeadText({Key? key,required this.title})
+  const HeadText({Key? key, required this.title, required this.index})
       : super(key: key);
 
   @override
@@ -16,18 +20,29 @@ class _HeadTextState extends State<HeadText> {
 
   @override
   Widget build(BuildContext context) {
-    return Seo.text(
-      text: 'bibek ranjan saha ${widget.title}',
-      child: MouseRegion(
-        onEnter: (_) {
+    return Seo.head(
+      tags: const [
+        MetaTag(
+          name: 'title',
+          content: 'Portfolio of Bibek Ranjan Saha in Flutter',
+        ),
+        LinkTag(
+          rel: 'canonical',
+          href: 'http://bibek-saha.web.app/',
+        ),
+      ],
+      child: InkWell(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        onHover: (hover) {
           setState(() {
-            isHovered = true;
+            isHovered = hover;
           });
         },
-        onExit: (_) {
-          setState(() {
-            isHovered = false;
-          });
+        onTap: () {
+          itemScrollController.scrollTo(
+              index: widget.index,
+              duration: const Duration(milliseconds: 365),
+              curve: Curves.fastOutSlowIn);
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -50,8 +65,7 @@ class _HeadTextState extends State<HeadText> {
             ),
             child: Text(
               widget.title,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
         ),

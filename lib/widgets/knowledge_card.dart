@@ -1,4 +1,4 @@
-import 'package:bibek_ranjan_saha/widgets/seo_text.dart';
+import 'package:Bibek/widgets/seo_text.dart';
 import 'package:flutter/material.dart';
 
 import 'linear_progress.dart';
