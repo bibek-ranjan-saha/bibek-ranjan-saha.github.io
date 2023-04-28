@@ -279,7 +279,7 @@ class ContactPage extends StatelessWidget {
                                     Icon(
                                       Icons.contact_mail_outlined,
                                       size: 35,
-                                      color: Colors.white70,
+                                      color: Colors.black54,
                                     )
                                   ],
                                 ),

@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:js' as js;
 
 import 'package:Bibek/models/user_details.dart';
-import 'package:flutter/material.dart';
 
+import '../models/battery_data.dart';
+import '../models/device_data.dart';
 import '../models/repo_data.dart';
 import '../models/statistics_data.dart';
 import '../models/weather_data.dart';
@@ -16,23 +18,36 @@ class ApiRepo {
     return userDetailsFromJson(jsonEncode(data.data));
   }
 
-  static Future<String> getJoke() async {
-    var data = await Api.instance.getData("https://geek-jokes.sameerkumar"
-        ".website/api");
-    return data.data.toString();
+  static Future<BatteryData?> getBatteryInfo() async {
+    String data = "";
+    await js.context.callMethod("getBatteryDataInternal", []);
+    await Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        data = js.context.callMethod("returnBackBatteryData", []);
+      },
+    );
+    return batteryDataFromJson(data);
   }
 
-  // static void getIpData() async {
-  //   Response? data;
-  //
-  //   try {
-  //     data =
-  //         await Api.instance.getData("https://bibek-saha.onrender.com/test_ip");
-  //     js.context.callMethod("showAlert", ["$data"]);
-  //   } catch (e) {
-  //     js.context.callMethod("showAlert", ["$data with error $e"]);
-  //   }
-  // }
+  static Future<DeviceData?> getSystemInfo() async {
+    final userAgent = js.context.callMethod("getUserAgent", []);
+    var data = await Api.instance.postData(
+        "https://api.whatismybrowser.com/api/v2/user_agent_parse",
+        needHeader: false,
+        customHeader: {"X-API-KEY" : "f10b54e9eb43faf0c63b43998dd23f13"}, data: {"user_agent": userAgent});
+    if(data.statusCode == 200)
+      {
+        return DeviceData.fromJson(data.data);
+      }
+    return null;
+  }
+
+  static Future<String> getJoke() async {
+    var data = await Api.instance.postData("https://geek-jokes.sameerkumar"
+        ".website/api", data: {});
+    return data.data.toString();
+  }
 
   static Future<List<RepoData>> getProjects() async {
     var data = await Api.instance.getData("https://api.github"
@@ -43,7 +58,7 @@ class ApiRepo {
   static Future<WeatherData?> getWeatherInfo(String city) async {
     var response = await Api.instance.getData(
         "https://api.openweathermap.org/data/2"
-            ".5/weather?q=$city&units=metric&appid=0645404ec6534ea39e7720b364e0a25f");
+        ".5/weather?q=$city&units=metric&appid=0645404ec6534ea39e7720b364e0a25f");
     if (response.statusCode == 200) {
       var jsonString = response.data;
       return weatherDataFromJson(jsonEncode(jsonString));
@@ -54,14 +69,13 @@ class ApiRepo {
   static void getStats(UserDetails data, DataProvider provider) async {
     try {
       var response = await Api.instance.postData(
-        "https://bibek-saha.onrender.com/api",
-        data: data.toApiJson(),
-        needHeader: true
-      );
+          "https://bibek-saha.onrender.com/api",
+          data: data.toApiJson(),
+          needHeader: true);
       var stats = statisticsFromJson(jsonEncode(response.data));
       provider.updateData(stats);
     } catch (e) {
-      debugPrint("new data error $e ${data.toApiJson()}");
+      // debugPrint("new data error $e ${data.toApiJson()}");
     }
   }
 
@@ -78,5 +92,17 @@ class ApiRepo {
         .getData("https://bibek-ranjan-saha.github.io/apps_list/resume_link"
             ".json");
     return response.data["link"].toString();
+  }
+
+  static Future<DeviceData?> getUserDetails(String userAgent) async {
+    var response = await Api.instance.postData("",
+        data: {"user_agent": userAgent},
+        needHeader: false,
+        customHeader: {"X-API-KEY": "f10b54e9eb43faf0c63b43998dd23f13"});
+    if (response.statusCode == 200) {
+      var jsonString = response.data;
+      return deviceDataFromJson(jsonEncode(jsonString));
+    }
+    return null;
   }
 }

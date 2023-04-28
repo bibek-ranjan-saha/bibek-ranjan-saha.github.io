@@ -1,3 +1,4 @@
+import 'package:Bibek/pages/experiments_page.dart';
 import 'package:Bibek/pages/stats_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,5 +28,6 @@ List<Widget> pages = const [
   AboutPage(),
   ProjectPage(),
   StatisticsPage(),
+  ExperimentsPage(),
   ContactPage()
 ];

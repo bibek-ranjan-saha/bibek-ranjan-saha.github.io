@@ -4,8 +4,6 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class Api {
   final Dio _httpClient = Dio();
 
-  // Dio get client => _httpClient;
-
   static Api? _instance;
 
   IO.Socket? socket;
@@ -25,11 +23,12 @@ class Api {
     return _instance!;
   }
 
-  getData(String url, {bool needHeader = false}) async {
+  Future<Response> getData(String url,
+      {bool needHeader = false, Map<String, dynamic>? customHeader}) async {
     Response response = await _httpClient.get(
       url,
       options: !needHeader
-          ? null
+          ? Options(headers: customHeader)
           : Options(headers: {
               "Access-Control-Allow-Origin": "*",
               'Content-Type': 'application/json',
@@ -39,11 +38,13 @@ class Api {
     return response;
   }
 
-  postData(String url,
-      {required Map<String, dynamic> data, bool needHeader = false}) async {
+  Future<Response> postData(String url,
+      {required Map<String, dynamic> data,
+      bool needHeader = false,
+      Map<String, dynamic>? customHeader}) async {
     Response response = await _httpClient.post(url,
         options: !needHeader
-            ? null
+            ? Options(headers: customHeader)
             : Options(headers: {
                 "Access-Control-Allow-Origin": "*",
                 'Content-Type': 'application/json',

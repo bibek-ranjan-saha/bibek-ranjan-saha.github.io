@@ -1,5 +1,5 @@
-import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:Bibek/providers/data_provider.dart';
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -68,7 +68,7 @@ class StatisticsPage extends StatelessWidget {
                   provider.stats == null
                       ? "Wait for websockets to connect then you will be able to see live updates"
                       : "Open it in your other device and see the magic.",
-                  style: const TextStyle(fontSize: 16, color: Colors.white54),
+                  style: const TextStyle(fontSize: 16, color: Colors.white70),
                   textAlign: TextAlign.start,
                 ),
               ],
@@ -108,16 +108,24 @@ class StatisticsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(
-                  "Country : ${provider.ipData?.countryName}\nRegion "
-                  ": ${provider.ipData?.continentName}\nCity : "
-                  "${provider.ipData?.city}\nNetwork Service Provider : "
-                  "${provider.ipData?.organization}\nZip "
-                  "code : ${provider.ipData?.zipcode}",
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white70,
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.white, width: 2),
+                  ),
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    "Country : ${provider.ipData?.countryName}\nRegion "
+                    ": ${provider.ipData?.continentName}\nCity : "
+                    "${provider.ipData?.city}\nNetwork Service Provider : "
+                    "${provider.ipData?.organization}\nZip "
+                    "code : ${provider.ipData?.zipcode}",
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white70,
+                    ),
                   ),
                 ),
               ],
@@ -158,9 +166,29 @@ class StatisticsPage extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 2),
                 ),
                 padding: const EdgeInsets.all(10),
-                child: const Center(
-                  child: Text(
-                      "Web-sockets is not established yet hold on for live update"),
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Card(
+                        child: Padding(
+                          padding: EdgeInsets.all(6.0),
+                          child: SizedBox(
+                            width: 12,
+                            height: 12,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Text(
+                        "Web-sockets is not established yet hold on for live update",
+                        style: TextStyle(fontSize: 16, color: Colors.white70),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }
