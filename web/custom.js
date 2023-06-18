@@ -47,3 +47,23 @@ function getBatteryData() {
     return data;
   });
 }
+
+async function getBatteryDataInJSON() {
+  try {
+    const battery = await navigator.getBattery();
+    const navigatorData = {
+      charging: battery.charging,
+      chargingTime: battery.chargingTime,
+      dischargingTime: battery.dischargingTime,
+      level: battery.level,
+      status: true,
+    };
+    return JSON.stringify(navigatorData);
+  } catch (error) {
+    const navigatorData = {
+      status: false,
+      error: error.message || 'Unknown error',
+    };
+    return JSON.stringify(navigatorData);
+  }
+}

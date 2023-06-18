@@ -3,10 +3,11 @@ import 'package:Bibek/widgets/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'assets/images.dart';
-import 'constants/values.dart';
+import '../../assets/images.dart';
+import '../../constants/values.dart';
 
 class MainPage extends StatelessWidget {
+  static const String route = '/';
   const MainPage({Key? key}) : super(key: key);
 
   @override
@@ -86,10 +87,10 @@ class MainPage extends StatelessWidget {
               ),
               title: isWebMobile(size)
                   ? null
-                  : SingleChildScrollView(
+                  : const SingleChildScrollView(
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
+                        children: [
                           HeadText(
                             title: 'Home',
                             index: 0,

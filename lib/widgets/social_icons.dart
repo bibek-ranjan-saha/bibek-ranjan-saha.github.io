@@ -40,9 +40,8 @@ class _SocialIconsState extends State<SocialIcons> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedContainer(
+          AnimatedSize(
             duration: const Duration(milliseconds: 365),
-            height: 50,
             child: isHovered
                 ? Column(
                     children: [
@@ -71,7 +70,7 @@ class _SocialIconsState extends State<SocialIcons> {
                       ),
                     ],
                   )
-                : null,
+                : const SizedBox(),
           ),
           AnimatedContainer(
             decoration: BoxDecoration(

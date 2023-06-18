@@ -1,13 +1,13 @@
-import 'package:Bibek/pages/experiments_page.dart';
-import 'package:Bibek/pages/stats_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import '../pages/about_page.dart';
-import '../pages/contact_page.dart';
-import '../pages/home_page.dart';
-import '../pages/project_page.dart';
+import '../screens/home/pages/about_page.dart';
+import '../screens/home/pages/contact_page.dart';
+import '../screens/home/pages/experiments_page.dart';
+import '../screens/home/pages/home_page.dart';
+import '../screens/home/pages/project_page.dart';
+import '../screens/home/pages/stats_page.dart';
 
 final ItemScrollController itemScrollController = ItemScrollController();
 final ItemPositionsListener itemPositionsListener =
@@ -31,3 +31,8 @@ List<Widget> pages = const [
   ExperimentsPage(),
   ContactPage()
 ];
+
+
+class ColorConstants{
+  static const Color blue = Color(0xff3A3ADD);
+}

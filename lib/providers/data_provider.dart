@@ -11,8 +11,15 @@ class DataProvider extends ChangeNotifier {
 
   UserDetails? _ipData;
 
-  void updateData(Statistics? stats) {
-    _statistics = stats;
+  bool hasRenderDComFailed = false;
+
+  void updateData(Statistics? stats, {bool? hasFailed}) {
+    if (stats != null) {
+      _statistics = stats;
+    }
+    if (hasFailed != null) {
+      hasRenderDComFailed = hasFailed;
+    }
     notifyListeners();
   }
 

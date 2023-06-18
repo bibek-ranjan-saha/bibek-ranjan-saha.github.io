@@ -35,17 +35,19 @@ class ApiRepo {
     var data = await Api.instance.postData(
         "https://api.whatismybrowser.com/api/v2/user_agent_parse",
         needHeader: false,
-        customHeader: {"X-API-KEY" : "f10b54e9eb43faf0c63b43998dd23f13"}, data: {"user_agent": userAgent});
-    if(data.statusCode == 200)
-      {
-        return DeviceData.fromJson(data.data);
-      }
+        customHeader: {"X-API-KEY": "f10b54e9eb43faf0c63b43998dd23f13"},
+        data: {"user_agent": userAgent});
+    if (data.statusCode == 200) {
+      return DeviceData.fromJson(data.data);
+    }
     return null;
   }
 
   static Future<String> getJoke() async {
-    var data = await Api.instance.postData("https://geek-jokes.sameerkumar"
-        ".website/api", data: {});
+    var data = await Api.instance.postData(
+        "https://geek-jokes.sameerkumar"
+        ".website/api",
+        data: {});
     return data.data.toString();
   }
 
@@ -72,18 +74,25 @@ class ApiRepo {
           "https://bibek-saha.onrender.com/api",
           data: data.toApiJson(),
           needHeader: true);
-      var stats = statisticsFromJson(jsonEncode(response.data));
-      provider.updateData(stats);
+      if (response.data != null &&
+          ((response.data is String) ? response.data.isNotEmpty : false)) {
+        var stats = Statistics.fromJson(jsonDecode(response.data));
+        provider.updateData(stats,hasFailed: false);
+      }
     } catch (e) {
-      // debugPrint("new data error $e ${data.toApiJson()}");
+      provider.updateData(null,hasFailed: true);
     }
   }
 
   static void getStatisticsUpdates(DataProvider provider) async {
     final socketClient = Api.instance.socket!;
     socketClient.on('dataUpdate', (data) {
-      var stats = statisticsFromJson(jsonEncode(data));
-      provider.updateData(stats);
+      if (data != null && data.toString().isNotEmpty) {
+        var stats = Statistics.fromJson(data);
+        provider.updateData(stats,hasFailed: false);
+      } else {
+        provider.updateData(null,hasFailed: true);
+      }
     });
   }
 

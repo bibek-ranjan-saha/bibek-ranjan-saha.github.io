@@ -29,7 +29,6 @@ class UserDetails {
     required this.countryTld,
     required this.languages,
     required this.countryFlag,
-    required this.geonameId,
     required this.isp,
     required this.connectionType,
     required this.organization,
@@ -55,7 +54,6 @@ class UserDetails {
   String countryTld;
   String languages;
   String countryFlag;
-  String geonameId;
   String isp;
   String connectionType;
   String organization;
@@ -81,7 +79,6 @@ class UserDetails {
         countryTld: json["country_tld"],
         languages: json["languages"],
         countryFlag: json["country_flag"],
-        geonameId: json["geoname_id"],
         isp: json["isp"],
         connectionType: json["connection_type"],
         organization: json["organization"],
@@ -108,7 +105,6 @@ class UserDetails {
         "country_tld": countryTld,
         "languages": languages,
         "country_flag": countryFlag,
-        "geoname_id": geonameId,
         "isp": isp,
         "connection_type": connectionType,
         "organization": organization,
@@ -118,20 +114,25 @@ class UserDetails {
 
   Map<String, dynamic> toApiJson() {
     return {
-      "country": countryName,
-      "countryCode": countryCode2,
-      "region": continentCode,
-      "regionName": continentName,
-      "city": city,
-      "zip": zipcode,
-      "lat": double.parse(latitude),
-      "lon": double.parse(longitude),
-      "timezone": timeZone.name,
-      "isp": isp,
-      "org": organization,
-      "as": organization,
-      "ip": ip
+      "country": getCorrectValue(countryName),
+      "countryCode": getCorrectValue(countryCode2),
+      "region": getCorrectValue(continentCode),
+      "regionName": getCorrectValue(continentName),
+      "city": getCorrectValue(city),
+      "zip": getCorrectValue(zipcode),
+      "lat": double.tryParse(latitude) ?? 0.0,
+      "lon": double.tryParse(longitude) ?? 0.0,
+      "timezone": getCorrectValue(timeZone.name),
+      "isp": getCorrectValue(isp),
+      "org": getCorrectValue(organization),
+      "as": getCorrectValue(organization),
+      "ip": getCorrectValue(ip)
     };
+  }
+
+  String getCorrectValue(String value)
+  {
+    return value.isEmpty ? "Unknown" : value;
   }
 }
 

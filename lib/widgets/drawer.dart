@@ -34,7 +34,6 @@ class CrazyDrawer extends StatelessWidget {
           const CrazyListTile(index: 3, title: "Statistics"),
           const CrazyListTile(index: 4, title: "Experiments"),
           const CrazyListTile(index: 5, title: "Contact"),
-          const Spacer(),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -66,9 +65,9 @@ class CrazyDrawer extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   minimumSize: const Size(100, 45)),
-              child: Row(
+              child: const Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   CrazySeoText(text: "Download resume"),
                   SizedBox(width: 6),
                   Icon(Icons.download_outlined)

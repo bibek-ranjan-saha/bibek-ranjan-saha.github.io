@@ -1,14 +1,3 @@
-// To parse this JSON data, do
-//
-//     final statistics = statisticsFromJson(jsonString);
-
-import 'dart:convert';
-
-Statistics statisticsFromJson(String str) =>
-    Statistics.fromJson(json.decode(str));
-
-String statisticsToJson(Statistics data) => json.encode(data.toJson());
-
 class Statistics {
   Statistics({
     required this.id,
