@@ -36,3 +36,7 @@ List<Widget> pages = const [
 class ColorConstants{
   static const Color blue = Color(0xff3A3ADD);
 }
+
+class RetryConstants{
+  static const int defaultRetryCount = 3;
+}

@@ -128,7 +128,7 @@ class MainPage extends StatelessWidget {
             body: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(AssetAssets.backgroundImageNew),
+                  image: AssetImage(AssetAssets.backgroundImage),
                   fit: BoxFit.cover,
                   // colorFilter: ColorFilter.mode(
                   //     Colors.black.withOpacity(0.35), BlendMode.hue),

@@ -24,5 +24,4 @@ class AssetAssets {
   static const String iconArduino = "assets/images/arduino.png";
   static const String waveIconMS = "assets/images/waving.gif";
   static const String backgroundImage = "assets/images/bg.gif";
-  static const String backgroundImageNew = "assets/images/bg_new.gif";
 }
